@@ -5,15 +5,20 @@ import indexRoutes from "./routers/index.routes.js";
 import stateRoutes from "./routers/state.routes.js";
 import multiFormRoutes from "./routers/form.routes.js";
 import statusRoutes from "./routers/status.routes.js";
+import cookieParser from "cookie-parser";
+import { vistorCount } from "./middleware/middleware.js";
 
 const app = express();
-const port = 3000;
+
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 app.set("views", path.join(process.cwd(), "src", "views"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+app.use(vistorCount);
 
 app.use(indexRoutes);
 app.use(stateRoutes);
