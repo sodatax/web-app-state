@@ -1,13 +1,8 @@
 import express from "express";
+import { getIndex } from "../controllers/index.controller.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    res.render("index", {
-        theme: req.theme,
-        bodyClass: req.bodyClass,
-        themeClicks: req.themeClicks
-    });
-});
+router.get("/", getIndex);
 
 export default router;

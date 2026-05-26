@@ -1,24 +1,9 @@
 import express from "express";
+import { getStatus, getStatusJson } from "../controllers/status.controller.js";
 
 const router = express.Router();
 
-// HTML status page
-router.get("/status", (req, res) => {
-    res.render("status", {
-        theme: req.theme,
-        bodyClass: req.bodyClass,
-        themeClicks: req.themeClicks,
-        cookies: req.cookies || {},
-        session: req.session || {}
-    });
-});
-
-// JSON endpoint
-router.get("/api/status.json", (req, res) => {
-    res.json({
-        cookies: req.cookies || {},
-        session: req.session || {}
-    });
-});
+router.get("/status", getStatus);
+router.get("/api/status.json", getStatusJson);
 
 export default router;
